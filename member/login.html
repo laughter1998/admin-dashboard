@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+	
+	<div class="container">
+		<div class="row justify-content-center align-items-center vh-100">
+			<div class="" style="max-width:500px;">
+				<div class="text-center">
+					<img class="" src="https://www.econ-net.com/images/glogo.png"  alt="logo">	
+				</div>
+				<div class="card shadow-sm mt-5">
+					<div class="card-body p-4 p-sm-5">
+						<p>Sign in to access the eCon-Network CMS</p>
+						<div class="form-float mb-4" data-error="">
+							<input type="text" id="id" class="form-control " autocomplete="off" placeholder=" ">
+							<label for="id" >ID</label>
+						</div>
+						<div class="form-float mb-4" data-error="">
+							<input type="text" id="password" class="form-control " autocomplete="off" placeholder=" ">
+							<label for="password" >Password</label>
+						 </div>
+						
+						 <div class="mb-3">
+							 <button class="btn btn-primary d-block w-100 " type="button" name="submit" onclick="submit()">Sign in</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+
+			
+		
+		
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<!-- <script src="../js/script.js"></script> -->
+	<script>
+		function submit(){
+            const id = document.getElementById('id');
+            const password = document.getElementById('password');
+            const idValue = id.value;
+            const passwordValue = password.value;
+            // ===== 에러메시지 =====
+            if(idValue === '') {
+                setErrorFor(id, 'ID를 입력해 주세요.');
+                return;
+            }
+           
+            if (passwordValue === '') {
+                setErrorFor(password, '비밀번호를 입력해 주세요.');
+                return;
+            }
+        }
+		// 폼 미입력시 에러 메시지 출력
+function setErrorFor(input, message) {
+	if(input.type == "checkbox"){
+		const formControl = input.closest(".form-float");
+		formControl.classList.add('error');
+		formControl.dataset.error = message;
+	}
+	const formControl = input.closest(".form-float");
+	formControl.classList.add('error');
+	formControl.dataset.error = message;
+}
+
+document.querySelectorAll('.form-float[data-error] input').forEach(inpEl => {
+	
+	const formGroup = inpEl.closest(".form-float");
+	const formCheck = formGroup.classList.contains("form-check");
+	if(formCheck){
+	  inpEl.addEventListener('change', function(){
+		  this.checked && formGroup.removeAttribute('data-error');
+	  });
+	  return;
+	}
+	  inpEl.addEventListener('input', function(){
+		  inpEl.closest(".form-float").removeAttribute('data-error')
+	  })
+  })
+		
+	</script>
+</body>
+</html>
